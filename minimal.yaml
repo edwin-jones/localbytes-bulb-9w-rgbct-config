@@ -16,8 +16,7 @@ esp8266:
 ota:
 
 wifi:
-  output_power: 14db
-  power_save_mode: light
+  power_save_mode: none
   ap:
     ssid: "${friendly_name}"
   
