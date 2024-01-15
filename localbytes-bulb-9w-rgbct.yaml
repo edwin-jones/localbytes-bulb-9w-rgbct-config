@@ -6,13 +6,6 @@ esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
-  on_boot:
-    priority: 600
-    then:
-      lambda: |-
-        id(red).set_max_power(id(red_max).state/100);
-        id(green).set_max_power(id(green_max).state/100);
-        id(blue).set_max_power(id(blue_max).state/100);
         
 esp8266:
   board: esp8285
@@ -21,8 +14,6 @@ esp8266:
 ota:
 
 api:
-  encryption:
-    key: !secret api_encryption_key
 
 wifi:
   ssid: !secret wifi_ssid
@@ -47,66 +38,9 @@ light:
     green: green
     blue: blue
     
-    cold_white_color_temperature: 6500 K
-    warm_white_color_temperature: 2700 K
+    cold_white_color_temperature: 6000 K
+    warm_white_color_temperature: 3000 K
     color_interlock: true
-    
-    effects:
-      - random:
-      - strobe:
-      - pulse:
-      - flicker:
-      - strobe:
-          name: Police Siren
-          colors:
-            - state: true
-              color_mode: RGB
-              brightness: 100%
-              red: 100%
-              green: 0%
-              blue: 0%
-              duration: 700ms
-            - state: true
-              color_mode: RGB
-              brightness: 100%
-              red: 0%
-              green: 0%
-              blue: 100%
-              duration: 700ms
-      - strobe:
-          name: Police Siren Fast
-          colors:
-            - state: true
-              color_mode: RGB
-              brightness: 100%
-              red: 100%
-              green: 0%
-              blue: 0%
-              duration: 300ms
-            - state: true
-              color_mode: RGB
-              brightness: 100%
-              red: 0%
-              green: 0%
-              blue: 100%
-              duration: 300ms
-      - strobe:
-          name: Red Alert
-          colors:
-            - state: true
-              color_mode: RGB
-              brightness: 100%
-              red: 100%
-              green: 0%
-              blue: 0%
-              duration: 300ms
-            - state: true
-              color_mode: RGB
-              brightness: 50%
-              red: 100%
-              green: 0%
-              blue: 0%
-              duration: 700ms
 
 #4, 5, 12, 13, 14
 output:
@@ -128,68 +62,7 @@ output:
     
   - platform: esp8266_pwm
     id: warm_white
-    pin: GPIO13
-      
-number:
-  - platform: template
-    optimistic: true
-    restore_value: true
-    name: "Red Max Power"
-    id: red_max
-    icon: "mdi:lightbulb-question"
-    min_value: 0
-    max_value: 100
-    step: 1
-    unit_of_measurement: "%"
-    initial_value: 100
-    on_value:
-      lambda: |-
-        id(red).set_max_power(x/100);
-        ESP_LOGI("light", "Set red max power to: %f", id(red).get_max_power());
-        auto call = id(bulb).toggle();
-        call.perform();
-        call = id(bulb).toggle();
-        call.perform();
-
-  - platform: template
-    optimistic: true
-    restore_value: true
-    name: "Green Max Power"
-    id: green_max
-    icon: "mdi:lightbulb-question"
-    min_value: 0
-    max_value: 100
-    step: 1
-    unit_of_measurement: "%"
-    initial_value: 100
-    on_value:
-      lambda: |-
-        id(green).set_max_power(x/100);
-        ESP_LOGI("light", "Set green max power to: %f", id(green).get_max_power());
-        auto call = id(bulb).toggle();
-        call.perform();
-        call = id(bulb).toggle();
-        call.perform();
-    
-  - platform: template
-    optimistic: true
-    restore_value: true
-    name: "Blue Max Power"
-    id: blue_max
-    icon: "mdi:lightbulb-question"
-    min_value: 0
-    max_value: 100
-    step: 1
-    unit_of_measurement: "%"
-    initial_value: 100
-    on_value:
-      lambda: |-
-        id(blue).set_max_power(x/100);
-        ESP_LOGI("light", "Set blue max power to: %f", id(blue).get_max_power());
-        auto call = id(bulb).toggle();
-        call.perform();
-        call = id(bulb).toggle();
-        call.perform();
+    pin: GPIO13 
    
 sensor:
   # WiFi Signal Sensor
