@@ -6,9 +6,6 @@ esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
-  project:
-    name: edwinjones.localbytes-bulb-9w-rgbct
-    version: "0.1.0"
   on_boot:
     priority: 600
     then:
@@ -28,8 +25,6 @@ ota:
 api:
 
 wifi:
-  output_power: 16db
-  #power_save_mode: light
   ap:
     ssid: "${friendly_name}"
 
@@ -39,7 +34,7 @@ web_server:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://JamesSwift/localbytes-bulb-9w-rgbct/localbytes-bulb-9w-rgbct.yaml
+  package_import_url: github://edwin-jones/localbytes-bulb-9w-rgbct-config/localbytes-bulb-9w-rgbct.yaml
 
 light:
   - platform: rgbww
