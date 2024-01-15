@@ -62,7 +62,7 @@ light:
       - pulse:
       - flicker:
       - strobe:
-          name: Police
+          name: Police Siren
           colors:
             - state: true
               color_mode: RGB
@@ -79,7 +79,7 @@ light:
               blue: 100%
               duration: 700ms
       - strobe:
-          name: Police Fast
+          name: Police Siren Fast
           colors:
             - state: true
               color_mode: RGB
