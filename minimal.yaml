@@ -6,7 +6,7 @@ esphome:
   name: "${name}"
   name_add_mac_suffix: true
   project:
-    name: jamesswift.localbytes-bulb-9w-rgbct
+    name: edwinjones.localbytes-bulb-9w-rgbct
     version: "0.0.1"
 
 esp8266:
