@@ -7,7 +7,7 @@ esphome:
   friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
   project:
-    name: jamesswift.localbytes-bulb-9w-rgbct
+    name: edwinjones.localbytes-bulb-9w-rgbct
     version: "0.1.0"
   on_boot:
     priority: 600
@@ -52,10 +52,9 @@ light:
     green: green
     blue: blue
     
-    cold_white_color_temperature: 6000 K
-    warm_white_color_temperature: 3000 K
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
     color_interlock: true
-    
     
     effects:
       - random:
@@ -96,6 +95,23 @@ light:
               green: 0%
               blue: 100%
               duration: 300ms
+      - strobe:
+          name: Red Alert
+          colors:
+            - state: true
+              color_mode: RGB
+              brightness: 100%
+              red: 100%
+              green: 0%
+              blue: 0%
+              duration: 300ms
+            - state: true
+              color_mode: RGB
+              brightness: 50%
+              red: 100%
+              green: 0%
+              blue: 0%
+              duration: 700ms
 
 #4, 5, 12, 13, 14
 output:
